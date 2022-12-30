@@ -1,0 +1,249 @@
+<html lang="">
+<head>
+    <title>2048</title>
+</head>
+<body>
+<div id="main">
+    <div id="row">
+        <div id="field" class="c{{ r1c1 }}">
+            <div id="field-number">{{ r1c1 }}</div>
+        </div>
+        <div id="field" class="c{{ r1c2 }}" style="left: 120px">
+            <div id="field-number">{{ r1c2 }}</div>
+        </div>
+        <div id="field" class="c{{ r1c3 }}" style="left: 240px">
+            <div id="field-number">{{ r1c3 }}</div>
+        </div>
+        <div id="field" class="c{{ r1c4 }}" style="left: 360px">
+            <div id="field-number">{{ r1c4 }}</div>
+        </div>
+    </div>
+
+    <div id="row">
+        <div id="field" class="c{{ r2c1 }}">
+            <div id="field-number">{{ r2c1 }}</div>
+        </div>
+        <div id="field" class="c{{ r2c2 }}" style="left: 120px">
+            <div id="field-number">{{ r2c2 }}</div>
+        </div>
+        <div id="field" class="c{{ r2c3 }}" style="left: 240px">
+            <div id="field-number">{{ r2c3 }}</div>
+        </div>
+        <div id="field" class="c{{ r2c4 }}" style="left: 360px">
+            <div id="field-number">{{ r2c4 }}</div>
+        </div>
+    </div>
+
+    <div id="row">
+        <div id="field" class="c{{ r3c1 }}">
+            <div id="field-number">{{ r3c1 }}</div>
+        </div>
+        <div id="field" class="c{{ r3c2 }}" style="left: 120px">
+            <div id="field-number">{{ r3c2 }}</div>
+        </div>
+        <div id="field" class="c{{ r3c3 }}" style="left: 240px">
+            <div id="field-number">{{ r3c3 }}</div>
+        </div>
+        <div id="field" class="c{{ r3c4 }}" style="left: 360px">
+            <div id="field-number">{{ r3c4 }}</div>
+        </div>
+    </div>
+
+    <div id="row">
+        <div id="field" class="c{{ r4c1 }}">
+            <div id="field-number">{{ r4c1 }}</div>
+        </div>
+        <div id="field" class="c{{ r4c2 }}" style="left: 120px">
+            <div id="field-number">{{ r4c2 }}</div>
+        </div>
+        <div id="field" class="c{{ r4c3 }}" style="left: 240px">
+            <div id="field-number">{{ r4c3 }}</div>
+        </div>
+        <div id="field" class="c{{ r4c4 }}" style="left: 360px">
+            <div id="field-number">{{ r4c4 }}</div>
+        </div>
+    </div>
+</div>
+
+
+{% if game_state == 'win' %}
+    <div id="game_over">You win!</div>
+{% elif game_state == 'lose' %}
+    <div id="game_over">You lose!</div>
+{% else %}
+    <div id="up"><a href="/move/up/{{ grid_encoding }}/">UP</a></div>
+    <div id="right"><a href="/move/right/{{ grid_encoding }}/">RIGHT</a></div>
+    <div id="down"><a href="/move/down/{{ grid_encoding }}/">DOWN</a></div>
+    <div id="left"><a href="/move/left/{{ grid_encoding }}/">LEFT</a></div>
+{% endif %}
+
+</body>
+</html>
+<script>
+    window.addEventListener("keydown", function (e) {
+        if (e.keyCode === 37) {
+            return location.pathname = '/move/left/{{ grid_encoding }}/';
+        } else if (e.keyCode === 39) {
+            return location.pathname = '/move/right/{{ grid_encoding }}/';
+        } else if (e.keyCode === 38) {
+            return location.pathname = '/move/up/{{ grid_encoding }}/';
+        } else if (e.keyCode === 40) {
+            return location.pathname = '/move/down/{{ grid_encoding }}/';
+        }
+    });
+</script>
+
+<style>
+    #main {
+        position: absolute;
+        width: 490px;
+        height: 490px;
+        background-color: #807979;
+        left: 50%;
+        top: 50%;
+        margin-left: -245px;
+        margin-top: -245px;
+    }
+
+    #row {
+        position: relative;
+        width: 100%;
+        height: 110px;
+        font-size: 24px;
+        text-align: center;
+        left: 0;
+        top: 0;
+        margin-top: 10px;
+    }
+
+    #field {
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        font-size: 24px;
+        text-align: center;
+        left: 0;
+        top: 0;
+        margin-left: 10px;
+    }
+
+    #field-number {
+        position: absolute;
+        width: 110px;
+        height: 30px;
+        font-size: 30px;
+        text-align: center;
+        left: 0;
+        top: 50%;
+        margin-top: -15px;
+    }
+
+    #up {
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        font-size: 30px;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        margin-left: -50px;
+        margin-top: -300px;
+    }
+
+    #down {
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        font-size: 30px;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        margin-left: -50px;
+        margin-top: 280px;
+    }
+
+    #right {
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        font-size: 30px;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        margin-left: 280px;
+        margin-top: -10px;
+    }
+
+    #left {
+        position: absolute;
+        width: 100px;
+        height: 30px;
+        font-size: 30px;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        margin-left: -370px;
+        margin-top: -10px;
+    }
+
+    #game_over {
+        position: absolute;
+        width: 360px;
+        height: 60px;
+        font-size: 50px;
+        background-color: lightgray;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        margin-left: -180px;
+        margin-top: -30px;
+    }
+
+    .c {
+        background-color: #9a9ba7;
+    }
+
+    .c2 {
+        background-color: #efe4db;
+    }
+
+    .c4 {
+        background-color: #eedfc9;
+    }
+
+    .c8 {
+        background-color: #f2b179;
+    }
+
+    .c16 {
+        background-color: #ec8d55;
+    }
+
+    .c32 {
+        background-color: #f77c60;
+    }
+
+    .c64 {
+        background-color: #eb5939;
+    }
+
+    .c128 {
+        background-color: #f2d04b;
+    }
+
+    .c256 {
+        background-color: #f2d04b;
+    }
+
+    .c512 {
+        background-color: #e3ba12;
+    }
+
+    .c1024 {
+        background-color: #e3ba12;
+    }
+
+    .c2048 {
+        background-color: #ecc500;
+    }
+</style>
